@@ -64,11 +64,11 @@
 
 
             <!-- SECTION stats and upgrades-->
-            <section class="row">
+            <section class="row scoreboard-bottom rounded-5">
                 <!-- SECTION upgrade buttons -->
                 <div class="col-6">
-                    <div class="row scoreboard-bottom rounded-start-5 p-1">
-                        <div class="col-6">
+                    <div class="row  m-2 p-1 upgrade-col  rounded-5">
+                        <div class="col-6 ">
                             <p class="header-font mb-1 fs-5">click <br>upgrades</p>
 
                             <div id="gardeningGlovesCard" class="upgrade-card mb-2" onclick="buyUpgrade(1)">
@@ -84,7 +84,7 @@
                             </div>
 
                         </div>
-                        <div class=" col-6 sub-header">
+                        <div class=" col-6">
                             <p class="header-font mb-1 fs-5">flower <br>power</p>
 
                             <div id="sunshineCard" class="upgrade-card mb-2" onclick="buyAutoUpgrade(30)">
@@ -105,28 +105,34 @@
 
                 <!-- SECTION affected stats -->
                 <div class="col-6">
-                    <div class="row scoreboard-bottom rounded-end-5 p-1">
+                    <div class="row m-2 p-1 upgrade-col  rounded-5 ">
                         <div class="col-6">
                             <p class="header-font mb-1 fs-5">click <br>stats</p>
                             <div class="upgrade-card mb-2">
-                                <p class="mb-0 p-1">pruners: <br><span id="gardenGlovesStat">0</span></p>
+                                <p class="mb-0 p-0"><i class="mdi mdi-content-cut"></i><br>pruners: <br><span
+                                        id="gardenGlovesStat">0</span>
+                                    </i>
+                                </p>
                             </div>
                             <div class="upgrade-card">
-                                <p class="mb-0 p-1">little shovels: <br><span id="littleShovelStat">0</span>
-                                    <br>
+                                <p class="m-0 p-0"><i class="mdi mdi-shovel"></i><br>little shovels: <br><span
+                                        id="littleShovelStat">0</span>
+
                                 </p>
                             </div>
                         </div>
                         <div class="col-6">
                             <p class="header-font mb-1 fs-5">power <BR>stats</p>
                             <div class="upgrade-card mb-2">
-                                <p class="mb-0">sunshine: <br><span id="sunshineStat">0</span>
-                                    <br>☀️
+                                <p class="mb-0"><i class="mdi mdi-white-balance-sunny"></i><br>sunshine: <br><span
+                                        id="sunshineStat">0</span>
+
                                 </p>
                             </div>
                             <div class="upgrade-card">
-                                <p class="mb-0">ladybugs: <br><span id="ladybugsStat">0</span>
-                                    <br>🐞
+                                <p class="mb-0"><i class="mdi mdi-ladybug"></i><br>ladybugs: <br><span
+                                        id="ladybugsStat">0</span>
+
                                 </p>
                             </div>
                         </div>

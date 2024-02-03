@@ -41,9 +41,6 @@ let flowers = 0;
 let clickPower = 1;
 let extraAutoClickPower = 0;
 
-
-
-
 function digForFlowers() {
     if (clickPower == 0) {
         flowers++
@@ -57,11 +54,24 @@ function buyUpgrade(clickUpgradeMultiplier) {
         clickPower += clickUpgradeMultiplier
         flowers -= clickUpgradeMultiplier
         drawClickUpgradeStats(clickUpgradeMultiplier)
+        // priceOfUpgradeIncrease(clickUpgradeMultiplier)
     } else {
         window.alert('Keep on digging!')
         return
     }
+}
 
+function drawClickUpgradeStats(clickUpgradeMultiplier) {
+    let foundUpgradeStat = clickUpgrades.find(clickUpgrade => clickUpgrade.multiplier == clickUpgradeMultiplier)
+    priceOfUpgradeIncrease(foundUpgradeStat)
+    foundUpgradeStat.quantity++
+    console.log(foundUpgradeStat.quantity)
+    document.getElementById(foundUpgradeStat.id).innerText = foundUpgradeStat.quantity
+}
+
+function priceOfUpgradeIncrease(foundUpgradeStat) {
+    console.log('found upgrade stat', foundUpgradeStat, foundUpgradeStat.cost)
+    foundUpgradeStat.cost *= 2
     drawScoreboard()
 }
 
@@ -70,6 +80,7 @@ function buyAutoUpgrade(automaticUpgradeMultiplier) {
         extraAutoClickPower += automaticUpgradeMultiplier
         flowers -= automaticUpgradeMultiplier
         drawAutoUpgradeStats(automaticUpgradeMultiplier)
+        // priceOfAutoUpgradeIncrease(automaticUpgradeMultiplier)
     }
     else {
         window.alert('Keep on digging!')
@@ -78,38 +89,24 @@ function buyAutoUpgrade(automaticUpgradeMultiplier) {
     drawScoreboard()
 }
 
-function drawClickUpgradeStats(clickUpgradeMultiplier) {
-    let foundUpgradeStat = clickUpgrades.find(clickUpgrade => clickUpgrade.multiplier == clickUpgradeMultiplier)
-    foundUpgradeStat.quantity++
-    console.log(foundUpgradeStat.quantity)
-    document.getElementById(foundUpgradeStat.id).innerText = foundUpgradeStat.quantity
-    priceOfUpgradeIncrease(foundUpgradeStat)
-}
-
 function drawAutoUpgradeStats(automaticUpgradeMultiplier) {
     // console.log(automaticUpgradeMultiplier)
     let foundUpgradeStat = automaticUpgrades.find(automaticUpgrade => automaticUpgrade.multiplier == automaticUpgradeMultiplier)
+    priceOfUpgradeIncrease(foundUpgradeStat)
     // console.log(foundUpgradeStat)
     foundUpgradeStat.quantity++
     document.getElementById(foundUpgradeStat.id).innerText = foundUpgradeStat.quantity
-    priceOfUpgradeIncrease(foundUpgradeStat)
+    // priceOfUpgradeIncrease(foundUpgradeStat)
 }
-
-
-
-
-
-
-function priceOfUpgradeIncrease(foundUpgradeStat) {
-    foundUpgradeStat.cost *= 2
-    console.log(foundUpgradeStat)
-}
-
 
 function drawScoreboard() {
     document.getElementById('totalFlowers').innerText = flowers
-    document.getElementById('clickPower').innerText = clickPower
-    document.getElementById('autoClicksOnIncrement').innerText = extraAutoClickPower
+    document.getElementById('clickPower').innerText = `+` + clickPower
+    document.getElementById('autoClicksOnIncrement').innerText = `+` + extraAutoClickPower
+    document.getElementById('gardeningGloveCost').innerText = clickUpgrades[0].cost
+    document.getElementById('littleShovelCost').innerText = clickUpgrades[1].cost
+    document.getElementById('sunshineCost').innerText = automaticUpgrades[0].cost
+    document.getElementById('ladybugCost').innerText = automaticUpgrades[1].cost
 }
 
 function autoUpgradeClicks() {
@@ -117,4 +114,5 @@ function autoUpgradeClicks() {
     drawScoreboard()
 }
 
+drawScoreboard()
 setInterval(autoUpgradeClicks, 3000)

@@ -63,16 +63,18 @@ body {
 
 .upgrade-card {
     border: 2px solid var(--box-border);
+    border-radius: 20%;
     background-color: #f9f3d0;
     -webkit-text-stroke-width: .2px;
     -webkit-text-stroke-color: var(--header-font);
-    padding: 5px;
+    padding: 0px;
 }
 
+.upgrade-col {
+    border: 3px dashed var(--box-border) !important;
+    background-color: var(--box-bg) !important;
+}
 
-/* .scoreboard-card .sub-header {
-    color: var(--secondary-header);
-} */
 
 [onClick] {
     cursor: pointer;
