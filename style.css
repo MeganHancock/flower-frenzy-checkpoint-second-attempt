@@ -63,7 +63,6 @@ body {
 
 .upgrade-card {
     border: 2px solid var(--box-border);
-    border-radius: 20%;
     background-color: #f9f3d0;
     -webkit-text-stroke-width: .2px;
     -webkit-text-stroke-color: var(--header-font);

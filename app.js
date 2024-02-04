@@ -3,7 +3,7 @@ let clickUpgrades = [
     {
         name: 'gardening gloves',
         id: 'gardenGlovesStat',
-        price: 100,
+        initialPrice: 1,
         quantity: 0,
         multiplier: 1,
         cost: 1
@@ -11,7 +11,7 @@ let clickUpgrades = [
     {
         name: 'little shovel',
         id: 'littleShovelStat',
-        price: 250,
+        initialPrice: 20,
         quantity: 0,
         multiplier: 20,
         cost: 20
@@ -22,7 +22,7 @@ let automaticUpgrades = [
     {
         name: 'sunshine',
         id: 'sunshineStat',
-        price: 500,
+        initialPrice: 30,
         quantity: 0,
         multiplier: 30,
         cost: 30
@@ -30,7 +30,7 @@ let automaticUpgrades = [
     {
         name: 'ladybugs',
         id: 'ladybugsStat',
-        price: 750,
+        initialPrice: 50,
         quantity: 0,
         multiplier: 50,
         cost: 50
@@ -50,13 +50,13 @@ function digForFlowers() {
 }
 
 function buyUpgrade(clickUpgradeMultiplier) {
-    if (flowers > clickUpgradeMultiplier) {
+    let foundUpgrade = clickUpgrades.find(clickUpgrade => clickUpgradeMultiplier == clickUpgrade.initialPrice)
+    if (flowers >= foundUpgrade.cost) {
         clickPower += clickUpgradeMultiplier
-        flowers -= clickUpgradeMultiplier
+        flowers -= foundUpgrade.cost
         drawClickUpgradeStats(clickUpgradeMultiplier)
-        // priceOfUpgradeIncrease(clickUpgradeMultiplier)
     } else {
-        window.alert('Keep on digging!')
+        keepDiggingAlert()
         return
     }
 }
@@ -71,32 +71,29 @@ function drawClickUpgradeStats(clickUpgradeMultiplier) {
 
 function priceOfUpgradeIncrease(foundUpgradeStat) {
     console.log('found upgrade stat', foundUpgradeStat, foundUpgradeStat.cost)
-    foundUpgradeStat.cost *= 2
+    foundUpgradeStat.cost++
     drawScoreboard()
 }
 
 function buyAutoUpgrade(automaticUpgradeMultiplier) {
-    if (flowers > automaticUpgradeMultiplier) {
+    let foundUpgrade = automaticUpgrades.find(automaticUpgrade => automaticUpgradeMultiplier == automaticUpgrade.initialPrice)
+    if (flowers >= foundUpgrade.cost) {
         extraAutoClickPower += automaticUpgradeMultiplier
         flowers -= automaticUpgradeMultiplier
         drawAutoUpgradeStats(automaticUpgradeMultiplier)
-        // priceOfAutoUpgradeIncrease(automaticUpgradeMultiplier)
+        foundUpgrade.cost++
     }
     else {
-        window.alert('Keep on digging!')
+        keepDiggingAlert()
         return
     }
     drawScoreboard()
 }
 
 function drawAutoUpgradeStats(automaticUpgradeMultiplier) {
-    // console.log(automaticUpgradeMultiplier)
     let foundUpgradeStat = automaticUpgrades.find(automaticUpgrade => automaticUpgrade.multiplier == automaticUpgradeMultiplier)
-    priceOfUpgradeIncrease(foundUpgradeStat)
-    // console.log(foundUpgradeStat)
     foundUpgradeStat.quantity++
     document.getElementById(foundUpgradeStat.id).innerText = foundUpgradeStat.quantity
-    // priceOfUpgradeIncrease(foundUpgradeStat)
 }
 
 function drawScoreboard() {
@@ -113,6 +110,15 @@ function autoUpgradeClicks() {
     flowers += extraAutoClickPower
     drawScoreboard()
 }
-
+function keepDiggingAlert() {
+    Swal.fire({
+        title: "Keep on digging!",
+        text: "Click the flowers to pick them and earn points!",
+        imageUrl: "https://clipart-library.com/img1/1275272.jpg",
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "shovel"
+    });
+}
 drawScoreboard()
 setInterval(autoUpgradeClicks, 3000)
