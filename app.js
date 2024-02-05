@@ -113,7 +113,7 @@ function autoUpgradeClicks() {
 function keepDiggingAlert() {
     Swal.fire({
         title: "Keep on digging!",
-        text: "Click the flowers to pick them and earn points!",
+        text: "Click the flowers to pick them and earn points! Use your flowers to purchase click upgrades or flower power-ups that do the clicking for you!",
         imageUrl: "https://clipart-library.com/img1/1275272.jpg",
         imageWidth: 200,
         imageHeight: 200,

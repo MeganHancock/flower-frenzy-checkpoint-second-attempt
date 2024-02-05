@@ -27,6 +27,13 @@ body {
     color: var(--header-font)
 }
 
+.spin {
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .flower-box {
     border: 10px solid var(--box-border) !important;
     background-color: var(--box-bg);
@@ -68,6 +75,7 @@ body {
     -webkit-text-stroke-width: .2px;
     -webkit-text-stroke-color: var(--header-font);
     padding: 0px;
+    font-size: 18px;
 }
 
 .upgrade-col {
